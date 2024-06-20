@@ -1,0 +1,1 @@
+O projeto vai consistir no estudo do capeonato brasileiro e a verificação de seus dados. 
