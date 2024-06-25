@@ -2,6 +2,7 @@ import pandas as pd
 from datetime import datetime
 from matplotlib import pyplot as plt
 
+#SUBIR O DADOS EM CSV PARA 
 cartoes_doc = 'C:/Users/lucia/OneDrive/Área de Trabalho/Projeto Analista de Dados/Brasileirão/campeonato-brasileiro-cartoes.csv'
 #esse relatório contém o dados de cartões recebidos por jogadores e times. As colunas são: "partida_id","rodata","clube","cartao","atleta","num_camisa","posicao","minuto" / e os dados são a partir de 2014. 
 
@@ -37,58 +38,58 @@ print(partidas_df.dtypes)
 print(brasileirao_df.dtypes)
 print(gols_df.dtypes)
 
-#limpeza dos dados. Tranformando cada coluna no tipo ideal inicialmente. 
-#CARTOES DF
-#no relatório de cartões trataremos todos os dados como string. Dados númericos como partida, minuto, num_camisa, são apenas para categorizar, não tendo funções matematicas aplicadas. 
-cartoes_df['partida_id'] = cartoes_df['partida_id'].astype(str)
-cartoes_df['rodata'] = cartoes_df['rodata'].astype(str)
-cartoes_df['clube'] = cartoes_df['clube'].astype(str)
-cartoes_df['cartao'] = cartoes_df['cartao'].astype(str)
-cartoes_df['atleta'] = cartoes_df['atleta'].astype(str)
-cartoes_df['num_camisa'] = cartoes_df['num_camisa'].astype(str)
-cartoes_df['posicao'] = cartoes_df['posicao'].astype(str)
-cartoes_df['minuto'] = cartoes_df['minuto'].astype(str)
+#CLASSIFICAÇÃO DOS DADOS. Transformando cada coluna no tipo ideal inicialmente. (Objc é uma classificação geral das variaveis mas na realidade )
+            #CARTOES DF
+            #no relatório de cartões trataremos todos os dados como string. Dados númericos como partida, minuto, num_camisa, são apenas para categorizar, não tendo funções matematicas aplicadas. 
+            cartoes_df['partida_id'] = cartoes_df['partida_id'].astype(str)
+            cartoes_df['rodata'] = cartoes_df['rodata'].astype(str)
+            cartoes_df['clube'] = cartoes_df['clube'].astype(str)
+            cartoes_df['cartao'] = cartoes_df['cartao'].astype(str)
+            cartoes_df['atleta'] = cartoes_df['atleta'].astype(str)
+            cartoes_df['num_camisa'] = cartoes_df['num_camisa'].astype(str)
+            cartoes_df['posicao'] = cartoes_df['posicao'].astype(str)
+            cartoes_df['minuto'] = cartoes_df['minuto'].astype(str)
 
-print(cartoes_df.dtypes)
-print(cartoes_df['partida_id'].apply(type))
+            print(cartoes_df.dtypes)
+            print(cartoes_df['partida_id'].apply(type))
 
-#PARTIDAS DF
-#no relatorio de partidas, dados estatisticos e por isso são variaveis numéricas com aplicações matematicas possiveis. 
-partidas_df['partida_id'] = partidas_df['partida_id'].astype(str)
-partidas_df['rodata'] = partidas_df['rodata'].astype(str)
-partidas_df['clube'] = partidas_df['clube'].astype(str)
-partidas_df['chutes'] = partidas_df['chutes'].astype('int64')
-partidas_df['chutes_no_alvo'] = partidas_df['chutes_no_alvo'].astype('int64')
-#como temos algumas variaveis de proporção preciso transformar as str em Floats, pra isso preciso tirar o "%" do dado:
-partidas_df['posse_de_bola'] = partidas_df['posse_de_bola'].str.rstrip('%').astype('float') / 100.0
-partidas_df['precisao_passes'] = partidas_df['precisao_passes'].str.rstrip('%').astype('float') / 100.0
-partidas_df['faltas'] = partidas_df['faltas'].astype('int64')
-partidas_df['cartao_amarelo '] = partidas_df['cartao_amarelo '].astype('int64')
-partidas_df['cartao_vermelho'] = partidas_df['cartao_vermelho '].astype('int64')
-partidas_df['impedimentos'] = partidas_df['impedimentos'].astype('int64')
-partidas_df['escanteios'] = partidas_df['escanteios'].astype('int64')
+            #PARTIDAS DF
+            #no relatorio de partidas, dados estatisticos e por isso são variaveis numéricas com aplicações matematicas possiveis. 
+            partidas_df['partida_id'] = partidas_df['partida_id'].astype(str)
+            partidas_df['rodata'] = partidas_df['rodata'].astype(str)
+            partidas_df['clube'] = partidas_df['clube'].astype(str)
+            partidas_df['chutes'] = partidas_df['chutes'].astype('int64')
+            partidas_df['chutes_no_alvo'] = partidas_df['chutes_no_alvo'].astype('int64')
+            #como temos algumas variaveis de proporção preciso transformar as str em Floats, pra isso preciso tirar o "%" do dado:
+            partidas_df['posse_de_bola'] = partidas_df['posse_de_bola'].str.rstrip('%').astype('float') / 100.0
+            partidas_df['precisao_passes'] = partidas_df['precisao_passes'].str.rstrip('%').astype('float') / 100.0
+            partidas_df['faltas'] = partidas_df['faltas'].astype('int64')
+            partidas_df['cartao_amarelo '] = partidas_df['cartao_amarelo '].astype('int64')
+            partidas_df['cartao_vermelho'] = partidas_df['cartao_vermelho '].astype('int64')
+            partidas_df['impedimentos'] = partidas_df['impedimentos'].astype('int64')
+            partidas_df['escanteios'] = partidas_df['escanteios'].astype('int64')
 
-print(partidas_df.dtypes)
+            print(partidas_df.dtypes)
 
 
-#BRASILEIRAO DF
+            #BRASILEIRAO DF
 
-brasileirao_df['ID'] = brasileirao_df['ID'].astype(str)
-brasileirao_df['rodata'] = brasileirao_df['rodata'].astype(str)
+            brasileirao_df['ID'] = brasileirao_df['ID'].astype(str)
+            brasileirao_df['rodata'] = brasileirao_df['rodata'].astype(str)
 
-brasileirao_df['data'] = pd.to_datetime(brasileirao_df['data'], dayfirst=True)
-#brasileirao_df['hora'] = pd.to_datetime(brasileirao_df['hora'], format='%H:%M').dt.time
-#converti a data para uma variavel de tempo para ficar mais facil de utilizar mas a variavel de hora e minuto estava dando erro, acredito que por conta da falta de dados. 
-print(brasileirao_df.dtypes)
+            brasileirao_df['data'] = pd.to_datetime(brasileirao_df['data'], dayfirst=True)
+            #brasileirao_df['hora'] = pd.to_datetime(brasileirao_df['hora'], format='%H:%M').dt.time
+            #converti a data para uma variavel de tempo para ficar mais facil de utilizar mas a variavel de hora e minuto estava dando erro, acredito que por conta da falta de dados. 
+            print(brasileirao_df.dtypes)
 
-#GOLS DF
-gols_df['partida_id'] = gols_df['partida_id'].astype(str)
-gols_df['rodata'] = gols_df['rodata'].astype(str)
-gols_df['tipo_de_gol'] = gols_df['tipo_de_gol'].astype(str)
-print(gols_df.dtypes)
-#verificar o artilheiro de cada ano
-#a planilha de gols tem dados apartir do campeonato de 2014 até o de 2023 - não possuido registros anteriores 
-#gols.atleta e tipo_de_gol
+            #GOLS DF
+            gols_df['partida_id'] = gols_df['partida_id'].astype(str)
+            gols_df['rodata'] = gols_df['rodata'].astype(str)
+            gols_df['tipo_de_gol'] = gols_df['tipo_de_gol'].astype(str)
+            print(gols_df.dtypes)
+            #verificar o artilheiro de cada ano
+            #a planilha de gols tem dados apartir do campeonato de 2014 até o de 2023 - não possuido registros anteriores 
+            #gols.atleta e tipo_de_gol
 
 
 
