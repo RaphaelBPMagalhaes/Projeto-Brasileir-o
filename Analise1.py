@@ -1,6 +1,6 @@
 import pandas as pd 
 from datetime import datetime, timedelta
-from matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 import os
 
 #SUBIR O DADOS EM CSV PARA 
@@ -185,9 +185,10 @@ tabela_percentuais = pd.DataFrame({
 tbl_percents = tabela_percentuais.resample('1H').agg({'Percentual_Derrotas':'mean', 'Percentual_Empates':'mean', 'Percentual_Vitorias':'mean'})
 print(tbl_percents.sort_values(by='hora', ascending = True))
 
+
 # Criar o gráfico de barras
 plt.figure(figsize=(12, 6))
-percentual_vitorias.plot(kind='bar', color='skyblue')
+tbl_percents['Percentual_Vitorias'].plot(kind='bar', color='skyblue')
 plt.title('Percentual de Vitórias do Mandante por Hora')
 plt.xlabel('Hora')
 plt.ylabel('Percentual de Vitórias (%)')
