@@ -1,6 +1,6 @@
 import pandas as pd 
 from datetime import datetime, timedelta
-from matplotlib import pyplot as plt
+from matplotlib.pyplot as plt
 import os
 
 #SUBIR O DADOS EM CSV PARA 
@@ -9,8 +9,7 @@ cartoes_doc = 'C:/Users/lucia/OneDrive/Área de Trabalho/Projeto Analista de Dad
 
 partidas_doc = 'C:/Users/lucia/OneDrive/Área de Trabalho/Projeto Analista de Dados/Brasileirão/campeonato-brasileiro-estatisticas-full.csv'
 #esse rela´torio possui essas colunas: "partida_id","rodata","clube","chutes","chutes_no_alvo","posse_de_bola","passes","precisao_passes","faltas","cartao_amarelo","cartao_vermelho","impedimentos","escanteios"
-#entretanto os dados efetivamente só começam a partir do ano de 2015. Antes disso fica inviavel a analise por falta de dados preenchidos. 
-
+#entretanto os dados efetivamente só começam a partir do ano de 2015. Antes disso fica inviavel a analise por falta de dados preenchidos. ?
 brasileirao_doc = 'C:/Users/lucia/OneDrive/Área de Trabalho/Projeto Analista de Dados/Brasileirão/campeonato-brasileiro-full.csv'
 #esse relatório contém os dados de todas as partidas desde 2013 do campeonato brasileiro contendo essas informações nas colunas: "ID","rodata","data","hora","mandante","visitante","formacao_mandante","formacao_visitante","tecnico_mandante","tecnico_visitante","vencedor","arena","mandante_Placar","visitante_Placar","mandante_Estado","visitante_Estado"
 #entretanto o dado de "tecnico_mandante","tecnico_visitante" só começou a partir de 2014 e os dados de "formacao_mandante","formacao_visitante" a partir de 2015. Então até a data o ano de 2013 não há informações completas.
@@ -185,6 +184,19 @@ tabela_percentuais = pd.DataFrame({
 # Exibir a tabela
 tbl_percents = tabela_percentuais.resample('1H').agg({'Percentual_Derrotas':'mean', 'Percentual_Empates':'mean', 'Percentual_Vitorias':'mean'})
 print(tbl_percents.sort_values(by='hora', ascending = True))
+
+# Criar o gráfico de barras
+plt.figure(figsize=(12, 6))
+percentual_vitorias.plot(kind='bar', color='skyblue')
+plt.title('Percentual de Vitórias do Mandante por Hora')
+plt.xlabel('Hora')
+plt.ylabel('Percentual de Vitórias (%)')
+plt.xticks(rotation=45)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.tight_layout()
+
+# Exibir o gráfico
+plt.show()
 
 
 
