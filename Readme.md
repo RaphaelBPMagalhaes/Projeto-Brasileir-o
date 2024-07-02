@@ -12,7 +12,7 @@ Maior marcdor de gols contra?
 
 Time mais vencedor a partir de 2003? 
 
-
+Dependendo da hora que o jogo começar, qual é a probabilidade do mandante sair vencedor? 
 Time com maior frequênica no campeonato
 Times que mais jogaram um contra o outro
 Qual posição é mais propensa a tomar cartões? 
